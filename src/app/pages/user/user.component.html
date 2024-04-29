@@ -1,0 +1,19 @@
+<section class="user">
+  <app-header [isShowFilter]="false"></app-header>
+  <main class="main-layout">
+    <nav>
+      <span routerLink="orders" (click)="pageNav = 'user-order'"
+        class="{{pageNav === 'user-order' ? 'active' : ''}}">{{getTranslation('orders')}}</span>
+      <span routerLink="trips" (click)="pageNav = 'user-trips'"
+        class="{{pageNav === 'user-trips' ? 'active' : ''}}">{{getTranslation('my_trips')}}</span>
+      <span routerLink="stays" (click)="pageNav = 'user-stays'"
+        class="{{pageNav === 'user-stays' ? 'active' : ''}}">{{getTranslation('my_stays')}}</span>
+      <span routerLink="wishlist" (click)="pageNav = 'user-wishlist'"
+        class="{{pageNav === 'user-wishlist' ? 'active' : ''}}">{{getTranslation('wishlist')}}</span>
+      <span routerLink="edit" (click)="pageNav = 'edit-stay'"
+        class="{{pageNav === 'edit-stay' ? 'active' : ''}}">{{getTranslation('add_a_stay')}}</span>
+    </nav>
+    <router-outlet></router-outlet>
+  </main>
+  <app-footer></app-footer>
+</section>

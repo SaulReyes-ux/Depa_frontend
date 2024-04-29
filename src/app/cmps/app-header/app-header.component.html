@@ -1,0 +1,43 @@
+<header class="main-layout full">
+    <div [ngClass]="isHeaderFilterActive ? 'header-content filter-active' : 'header-content'">
+        <div class="logo" routerLink="/">
+            <img src="../../../assets/img/user/logo.jpg" alt="">
+            <h2>Depa</h2>
+        </div>
+        <nav>
+            <div class="home-nav" routerLink="/user/edit" (click)="onNavigateToHost()" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+                <span>{{getTranslation('yourHome')}}</span>
+            </div>
+            <div (click)="onToggleLanguageModal()">
+                <span class="language material-symbols-outlined">language</span>
+            </div>
+            <div class="menu" (click)="onToggleHeaderMenuModal()">
+                <fa-icon [icon]="faBars"></fa-icon>
+                <img [src]="getUserImg()" alt="">
+                <span *ngIf="UserNotification" class="notification">{{UserNotification}}</span>
+
+                <header-menu-modal (onToggleHeaderMenuModal)="onToggleHeaderMenuModal()" (toggleLanguageModal)="onToggleLanguageModal()"
+                [isOpenLanguageModal]="isOpenLanguageModal" [isOpenFooter]="false"
+                *ngIf="isShowHeaderMenuModal"></header-menu-modal>
+            </div>
+        </nav>
+    </div>
+    <header-filter *ngIf="isShowFilter" [isHeaderFilterActive]="isHeaderFilterActive"
+        (toggleHeaderFilter)="toggleHeaderFilter()"></header-filter>
+</header>
+
+<body>
+    <div class="social-icons">
+        <a href="https://www.facebook.com/profile.php?id=61555849833392">
+            <img src="https://logodownload.org/wp-content/uploads/2014/09/facebook-logo-1-2.png" height="50px" alt="Facebook">
+        </a>
+        <a href="https://twitter.com/Depa_Casa11">
+            <img src="https://logos-world.net/wp-content/uploads/2020/04/Twitter-Symbol.png" height="50px" alt="Twitter">
+        </a>
+        <a href="https://www.instagram.com/depa_casa/">
+            <img src="https://www.pngmart.com/files/13/Instagram-Logo-PNG-Image-1.png" height="50px" alt="Instagram">
+        </a>
+       
+    </div>
+</body>
+<language-modal (onToggleLanguageModal)="onToggleLanguageModal()" *ngIf="isOpenLanguageModal"></language-modal>

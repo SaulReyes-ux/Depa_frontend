@@ -1,0 +1,60 @@
+<section class="stay-order">
+    <div class="order-content">
+        <div class="stay-order-header">
+            <h2 class="total">{{stay.price |currency}} USD<span> total</span></h2>
+            <div class="reviews">
+                <div class="rating">
+                    <fa-icon class="star" [icon]="faStar"></fa-icon>
+                    <span>{{RateAvg}}</span>
+                </div>
+                <span class="sum-of-reviews">{{stay.reviews.length}} {{getTranslation('reviews')}}</span>
+            </div>
+        </div>
+        <div class="checkout-container">
+            <div class="checkout-btns">
+                <label for="calender" class="check-in">
+                    <span class="title">{{getTranslation('checkOut')}}</span>
+                    <span>{{getCheckIn() | date}}</span>
+                </label>
+                <input id="calender" type="text" [(ngModel)]="date" name="date" airbnb-calendar [options]="options" />
+                <label for="calender" class="check-out">
+                    <span class="title">{{getTranslation('checkIn')}}</span>
+                    <span>{{getCheckOut() | date}}</span>
+                </label>
+            </div>
+            <div class="guest-btn" (click)="showGuestModal=!showGuestModal">
+                <button>
+                    <span class="title">{{getTranslation('guests')}}</span>
+                    <span>{{getGuests()}}</span>
+                </button>
+                <fa-icon *ngIf="!showGuestModal" [icon]="faChevronDown"></fa-icon>
+                <fa-icon *ngIf="showGuestModal" [icon]="faChevronUp"></fa-icon>
+            </div>
+            <guest-modal (toggleGuestModal)="toggleGuestModal()" [order]="order" [stay]="stay"
+                *ngIf="showGuestModal"></guest-modal>
+        </div>
+        <button class="order-btn" (click)="onAddOrder()">{{getTranslation('reserve')}}</button>
+        <div class="order-description">
+            <span>{{getTranslation('youWontBeChargedYet')}}</span>
+            <p>{{getTranslation('priceShownIsTotal')}}</p>
+        </div>
+        <div class="price-container">
+            <div class="price-line">
+                <span class="price-item">${{stay.price}} X {{GetTotalDays}} {{getTranslation('nights')}}</span>
+                <span>${{Price}} </span>
+            </div>
+            <div class="price-line">
+                <span class="price-item">{{getTranslation('cleaningFee')}}</span>
+                <span>${{CleanTax}} USD</span>
+            </div>
+            <div class="price-line">
+                <span class="price-item">{{getTranslation('serviceFee')}}</span>
+                <span>${{ServiceFee}} USD</span>
+            </div>
+        </div>
+        <div class="total-price">
+            <span>Total</span>
+            <span>${{TotalPrice | number:'1.2'}} USD</span>
+        </div>
+    </div>
+</section>

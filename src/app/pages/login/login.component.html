@@ -1,0 +1,178 @@
+<section class="login-page">
+    <div class="logo" routerLink="/">
+        <img src="../../../assets/img/user/logo.jpg" alt="">
+        <span class="close-btn material-symbols-outlined" routerLink="/">close</span>
+    </div>
+    <div class="form-container">
+        <div *ngIf="currentModalState == ModalState.Signup" class="signup-container">
+            <div class="header">
+                <h1>{{getTranslation('createAccount')}}</h1>
+                <p>{{getTranslation('getStartedFree')}}</p>
+            </div>
+            <form [formGroup]="formSignup" (ngSubmit)="onSubmit('signup')" novalidate>
+                <div class="input-container">
+                    <span class="icon material-symbols-outlined">account_circle</span>
+                    <input formControlName="fullname" id="fullname" autofocus class="form-control" placeholder="{{getTranslation('fullName')}}" autocomplete="off" />
+                </div>
+                <div *ngIf="formSignup.controls['fullname'].invalid && (formSignup.controls['fullname'].dirty || formSignup.controls['fullname'].touched)"
+                    class="alert alert-danger">
+                    <div *ngIf="formSignup.controls['fullname'].errors?.['required']">
+                        {{getTranslation('requiredFullName')}}
+                    </div>
+                    <div *ngIf="formSignup.controls['fullname'].errors?.['minlength']">
+                        {{getTranslation('requiredFullNameLength')}}
+                    </div>
+                </div>
+                <div class="input-container">
+                    <fa-icon class="icon" [icon]="faUser"></fa-icon>
+                    <input formControlName="username" type="text" id="username" placeholder="{{getTranslation('userName')}}" autocomplete="off" />
+                </div>
+                <div *ngIf="formSignup.controls['username'].invalid && (formSignup.controls['username'].dirty || formSignup.controls['username'].touched)"
+                    class="alert alert-danger">
+                    <div *ngIf="formSignup.controls['username'].errors?.['required']">
+                        {{getTranslation('requiredUsername')}}
+                    </div>
+                    <div *ngIf="formSignup.controls['username'].errors?.['minlength']">
+                        {{getTranslation('requiredUsernameLength')}}
+                    </div>
+                </div>
+                <div class="input-container">
+                    <fa-icon class="icon" [icon]="faMailBulk"></fa-icon>
+                    <input formControlName="email" type="text" id="email" placeholder="Email" autocomplete="off" />
+                </div>
+                <div *ngIf="formSignup.controls['email'].invalid && (formSignup.controls['email'].dirty || formSignup.controls['email'].touched)"
+                    class="alert alert-danger">
+                    <div *ngIf="formSignup.controls['email'].errors?.['required']">
+                        {{getTranslation('requiredEmail')}}
+                    </div>
+                    <div *ngIf="formSignup.controls['email'].errors?.['minlength']">
+                        {{getTranslation('requiredEmailLength')}}
+                    </div>
+                </div>
+                <div class="input-container">
+                    <span class="icon material-symbols-outlined">key</span>
+                    <input formControlName="password" id="password" type="password" placeholder="{{getTranslation('password')}}" required autocomplete="off"/>
+                </div>
+                <div *ngIf="formSignup.controls['password'].invalid && (formSignup.controls['password'].dirty || formSignup.controls['password'].touched)"
+                    class="alert alert-danger">
+                    <div *ngIf="formSignup.controls['password'].errors?.['required']">
+                        {{getTranslation('requiredPassword')}}
+                    </div>
+                    <div *ngIf="formSignup.controls['password'].errors?.['minlength']">
+                        {{getTranslation('requiredPasswordLength')}}
+                    </div>
+                </div>
+                <div class="upload-preview">
+                    <div class='img-picker'>
+                        <label htmlFor="imgUpload">
+                            <img *ngIf="!imgData.imgUrl" class="guest-img" src="https://res.cloudinary.com/du63kkxhl/image/upload/v1681630492/user-stay/guest_upcxtq.png" alt="" />
+                            <img *ngIf="imgData.imgUrl" class="user-img" [src]="imgData.imgUrl" alt="" />
+                            <input type="file" (change)="uploadImg($event)" accept="img/*" id="imgUpload" />
+                        </label>
+                    </div>
+                </div>
+                <div class="input-container" style="display: flex; justify-content: center;">
+                    <ngx-recaptcha2 #captchaElem
+                        [siteKey]="siteKey"
+                        formControlName="recaptcha">
+                    </ngx-recaptcha2>
+                </div>
+                <button class="signup-btn" [disabled]="formSignup.pristine || formSignup.invalid">{{'stay.login.sign-up' | translate}}</button>
+            </form>
+            <p>{{getTranslation('orSignWith')}}</p>
+            <div class="social-icons">
+                <fa-icon class="social-icon facebook" [icon]="facebook" ></fa-icon>
+                <fa-icon class="social-icon twitter" [icon]="twitter"></fa-icon>
+                <fa-icon class="social-icon google" [icon]="google"></fa-icon>
+            </div>
+            <p>{{getTranslation('alreadyHaveAccount')}} <span class="toggle-btn" (click)="this.currentModalState = ModalState.Login">{{getTranslation('signIn')}}</span></p>
+        </div>
+
+        <div *ngIf="currentModalState == ModalState.Login" class="login-container">
+            <div class="header">
+                <h1>{{getTranslation('signIn')}}</h1>
+                <p>{{getTranslation('welcomeBack')}}</p>
+            </div>
+            <form [formGroup]="formLogin" (ngSubmit)="onSubmit('login')" novalidate>
+                <div class="input-container">
+                    <fa-icon class="icon" [icon]="faUser"></fa-icon>
+                    <input formControlName="username" type="text" id="username" autofocus placeholder="{{getTranslation('userName')}}" autocomplete="off"/>
+                </div>
+                <div *ngIf="formLogin.controls['username'].invalid && (formLogin.controls['username'].dirty || formLogin.controls['username'].touched)"
+                    class="alert alert-danger">
+                    <div *ngIf="formLogin.controls['username'].errors?.['required']">
+                        {{getTranslation('requiredUsername')}}
+                    </div>
+                    <div *ngIf="formLogin.controls['username'].errors?.['minlength']">
+                        {{getTranslation('requiredUsernameLength')}}
+                    </div>
+                </div>
+                <div class="input-container">
+                    <span class="icon material-symbols-outlined">key</span>
+                    <input formControlName="password" id="password" type="password" placeholder="{{getTranslation('password')}}" required autocomplete="off" />
+                </div>
+                <div *ngIf="formLogin.controls['password'].invalid && (formLogin.controls['password'].dirty || formLogin.controls['password'].touched)"
+                    class="alert alert-danger">
+                    <div *ngIf="formLogin.controls['password'].errors?.['required']">
+                        {{getTranslation('requiredPassword')}}
+                    </div>
+                    <div *ngIf="formLogin.controls['password'].errors?.['minlength']">
+                        {{getTranslation('requiredPasswordLength')}}
+                    </div>
+                </div>
+                <div class="input-container" style="display: flex; justify-content: center;">
+                    <ngx-recaptcha2 #captchaElem
+                        [siteKey]="siteKey"
+                        formControlName="recaptcha">
+                    </ngx-recaptcha2>
+                </div>
+                <!-- <button type="button" class="signup-btn demo" (click)="onSignDemo()">{{getTranslation('signInDemo')}}</button> -->
+                <button class="signup-btn" [disabled]="formLogin.pristine || formLogin.invalid">{{getTranslation('signIn')}}</button>
+            </form>
+            <p>{{getTranslation('orSignWith')}}</p>
+            <div class="social-icons">
+                <fa-icon class="social-icon facebook" [icon]="facebook"></fa-icon>
+                <fa-icon class="social-icon twitter" [icon]="twitter"></fa-icon>
+                <fa-icon class="social-icon google" [icon]="google"></fa-icon>
+            </div>
+            <p>{{getTranslation('notRegistered')}} <span class="toggle-btn" (click)="this.currentModalState = ModalState.Signup">{{getTranslation('signUp')}}</span></p>
+        </div>
+        <div *ngIf="currentModalState == ModalState.SendCode" class="login-container">
+            <div class="header">
+                <h1>Please verify your account</h1>
+                <p>We have sent a verification code to your email address.</p>
+                <button class="btn-primary" (click)="sendVerificationCode()">Send code</button>
+            </div>
+        </div>
+    
+        <div *ngIf="currentModalState == ModalState.Verification" class="login-container">
+            <div class="header">
+                <h1>Please verify your account</h1>
+                <p>We have sent a verification code to your email address.</p>
+            </div>
+            <form (ngSubmit)="verifyCode()" [formGroup]="verificationForm">
+                <div class="form-group">
+                    <div class="input-container">    
+                        <label for="verificationCode">Enter verification code</label>
+                        <input type="text" id="verificationCode" formControlName="verificationCode" required>
+                    </div>
+                </div>
+                <button type="submit" class="btn-primary">Verify</button>
+                <div class="error-message" *ngIf="verificationError">
+                  Invalid verification code. Please try again.
+                </div>
+              </form>
+        </div>
+    
+        <div *ngIf="currentModalState == ModalState.VerificationSuccess" class="login-container">
+            <div class="header">
+                <h3>Verification successful!</h3>
+                <p>Your account has been verified.</p>
+                <button class="btn-primary" (click)="closeVerificationModalAsSuccess()">Continue</button>
+            </div>
+        </div>
+    </div>
+
+      <!--Reescribir lo mismo del codigo pero en lugar de modal reemplazara toda la pantalla como register y signup-->
+
+</section>

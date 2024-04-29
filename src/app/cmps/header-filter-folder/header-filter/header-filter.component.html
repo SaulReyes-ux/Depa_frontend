@@ -1,0 +1,49 @@
+<section [ngClass]="isHeaderFilterActive ? 'header-filter active' : 'header-filter'">
+  <div (click)="onToggleHeaderFilter()" class="header-filter-close" *ngIf="!isHeaderFilterActive">
+    <span>{{getTranslation('anywhere')}}</span>
+    <span>{{getTranslation('anyweek')}}</span>
+    <span>{{getTranslation('addGuests')}}</span>
+    <span class="icon-container">
+      <fa-icon [icon]="faMagnifyingGlass"></fa-icon>
+    </span>
+  </div>
+  <div *ngIf="isHeaderFilterActive" (window:scroll)="onToggleHeaderFilter()"
+    class="header-filter-active">
+    <div [ngClass]="modalNav === 'region-modal' || modalNav === 'search-place-modal' ? 'where active' : 'where'"
+      (click)="setModalNav('region-modal')">
+      <span class="title">{{getTranslation('where')}}</span>
+      <input #searchBox (keyup)="onSetWhereSearch(searchBox.value)" [value]="searchFilter" type="text"
+        placeholder="{{getTranslation('searchDestination')}}" />
+    </div>
+    <div class="border"></div>
+    <label for="calender" [ngClass]="modalNav === 'start-date' ? 'active' : ''" class="date"
+      (click)="onClickDate('start-date')">
+      <span class="title">{{getTranslation('checkIn')}}</span>
+      <span *ngIf="getCheckIn()">{{getCheckIn() | date}}</span>
+      <span *ngIf="!getCheckIn()">{{getTranslation('addDates')}}</span>
+    </label>
+    <input id="calender" type="text" [(ngModel)]="date" name="date" airbnb-calendar [options]="options" />
+    <div class="border"></div>
+    <label for="calender" [ngClass]="modalNav === 'end-date' ? 'active ' : ''" class="date"
+      (click)="onClickDate('end-date')">
+      <span class="title">{{getTranslation('checkOut')}}</span>
+      <span *ngIf="getCheckOut()">{{getCheckOut() | date}}</span>
+      <span *ngIf="!getCheckOut()">{{getTranslation('addDates')}}</span>
+    </label>
+    <div class="border"></div>
+    <div class="who-guests">
+      <div [ngClass]="modalNav === 'guests-modal' ? 'active ' : ''" class="add-guests"
+        (click)="setModalNav('guests-modal')">
+        <span class="title">{{getTranslation('who')}}</span>
+        <span>{{getGuests()}}</span>
+      </div>
+      <div class="search" (click)="onClickSearch()">
+        <fa-icon [icon]="faMagnifyingGlass"></fa-icon>
+        <span *ngIf="getGuests().length < 11">{{getTranslation('search')}}</span>
+      </div>
+    </div>
+    <header-filter-modal *ngIf="modalNav" [modalNav]="modalNav" (setModalNav)="setModalNav"
+      [order]="order" [stayFilter]="stayFilter" [placeNameFilter]="searchFilter"
+      (setSearchFilter)="setSearchFilter($event)"></header-filter-modal>
+  </div>
+</section>

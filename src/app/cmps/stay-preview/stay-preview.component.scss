@@ -1,0 +1,41 @@
+.stay-preview {
+  background-color: #f1f1f1;
+  padding: 10px;
+  box-shadow: 0 0 2px #FF385C;
+  border-radius: 10px;
+
+  .details {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-size: 15px;
+    line-height: 19px;
+    color: #717171;
+    .top {
+      display: flex;
+      justify-content: space-between;
+      color: #222222;
+      .loc {
+        font-weight: 600;
+      }
+      .rate {
+        display: flex;
+        gap: 5px;
+      }
+    }
+
+    .name {
+      width: 200px;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    .price {
+      span {
+        color: #222222;
+        font-weight: 600;
+      }
+    }
+  }
+}
