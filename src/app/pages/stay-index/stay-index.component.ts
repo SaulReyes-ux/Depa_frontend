@@ -57,14 +57,10 @@ export class StayIndexComponent implements OnInit, OnDestroy {
   onMouseInactive() {
     // Aquí pones la lógica para desplazar el scroll automáticamente
     // Por ejemplo, desplazar 100 píxeles hacia abajo cada 100 milisegundos:
-    const scrollInterval = setInterval(() => {
-      window.scrollBy(0, 100);
-    }, 100);
+  
 
     // Detener el desplazamiento después de un tiempo (por ejemplo, después de 5 segundos)
-    setTimeout(() => {
-      clearInterval(scrollInterval);
-    }, 5000); // Después de 5 segundos
+  
   }
 
   ngOnDestroy(): void {
