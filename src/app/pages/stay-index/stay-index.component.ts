@@ -51,9 +51,7 @@ export class StayIndexComponent implements OnInit, OnDestroy {
     })
 
     // Lógica para el desplazamiento automático sin mover el mouse
-    setTimeout(() => {
-      this.onMouseInactive();
-    }, 5000); // Después de 15 segundos
+    
   }
 
   onMouseInactive() {

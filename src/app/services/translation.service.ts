@@ -299,8 +299,8 @@ export class TranslationService {
       es: 'Se requiere la contraseña'
     },
     requiredPasswordLength:{
-      en: 'Password must be at least 8 characters long',
-      es: 'La contraseña debe tener al menos 8 caracteres'
+      en: 'The password must be at least 8 characters, 1 uppercase letter and 1 symbol',
+      es: 'La contraseña debe tener al menos 8 caracteres, 1 mayuscula y 1 simbolo'
     },
     welcomeBack:{
       en: 'Welcome back',

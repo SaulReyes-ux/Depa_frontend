@@ -12,15 +12,18 @@
         </div>
         <div class="checkout-container">
             <div class="checkout-btns">
-                <label for="calender" class="check-in">
-                    <span class="title">{{getTranslation('checkOut')}}</span>
-                    <span>{{getCheckIn() | date}}</span>
-                </label>
-                <input id="calender" type="text" [(ngModel)]="date" name="date" airbnb-calendar [options]="options" />
                 <label for="calender" class="check-out">
                     <span class="title">{{getTranslation('checkIn')}}</span>
+                    
+                    <span>{{getCheckIn() | date}}</span>
+                </label>
+                <label for="calender" class="check-in">
+                    <span class="title">{{getTranslation('checkOut')}}</span>
+                    
                     <span>{{getCheckOut() | date}}</span>
                 </label>
+                <input id="calender" type="text" [(ngModel)]="date" name="date" airbnb-calendar [options]="options" />
+               
             </div>
             <div class="guest-btn" (click)="showGuestModal=!showGuestModal">
                 <button>

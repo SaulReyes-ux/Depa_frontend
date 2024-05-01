@@ -58,7 +58,7 @@
                     <div *ngIf="formSignup.controls['password'].errors?.['required']">
                         {{getTranslation('requiredPassword')}}
                     </div>
-                    <div *ngIf="formSignup.controls['password'].errors?.['minlength']">
+                    <div *ngIf="formLogin.controls['password'].errors?.['pattern']">
                         {{getTranslation('requiredPasswordLength')}}
                     </div>
                 </div>
@@ -116,7 +116,7 @@
                     <div *ngIf="formLogin.controls['password'].errors?.['required']">
                         {{getTranslation('requiredPassword')}}
                     </div>
-                    <div *ngIf="formLogin.controls['password'].errors?.['minlength']">
+                    <div *ngIf="formLogin.controls['password'].errors?.['pattern']">
                         {{getTranslation('requiredPasswordLength')}}
                     </div>
                 </div>

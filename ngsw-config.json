@@ -31,7 +31,7 @@
     {
       "name": "api",
       "urls": [
-        "http://localhost:4200"
+        "https://depa-backend.onrender.com"
       ],
       "cacheConfig": {
         "maxSize": 20,
