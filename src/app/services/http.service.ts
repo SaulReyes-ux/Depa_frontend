@@ -8,7 +8,7 @@ export class HttpService {
 
   constructor(private http: HttpClient) { }
 
-  BASE_URL = isDevMode() ? 'https://depa-backend.onrender.com' : '/api/'
+  BASE_URL = isDevMode() ? 'https://depa-backend.onrender.com/api/' : '/api/'
   headers = new HttpHeaders({
   'Content-Type': 'application/json',
   'Authorization': 'Bearer <token>',

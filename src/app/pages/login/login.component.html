@@ -58,7 +58,7 @@
                     <div *ngIf="formSignup.controls['password'].errors?.['required']">
                         {{getTranslation('requiredPassword')}}
                     </div>
-                    <div *ngIf="formLogin.controls['password'].errors?.['pattern']">
+                    <div *ngIf="formSignup.controls['password'].errors?.['pattern']">
                         {{getTranslation('requiredPasswordLength')}}
                     </div>
                 </div>
@@ -71,12 +71,6 @@
                         </label>
                     </div>
                 </div>
-                <div class="input-container" style="display: flex; justify-content: center;">
-                    <ngx-recaptcha2 #captchaElem
-                        [siteKey]="siteKey"
-                        formControlName="recaptcha">
-                    </ngx-recaptcha2>
-                </div>
                 <button class="signup-btn" [disabled]="formSignup.pristine || formSignup.invalid">{{'stay.login.sign-up' | translate}}</button>
             </form>
             <p>{{getTranslation('orSignWith')}}</p>
@@ -88,6 +82,10 @@
             <p>{{getTranslation('alreadyHaveAccount')}} <span class="toggle-btn" (click)="this.currentModalState = ModalState.Login">{{getTranslation('signIn')}}</span></p>
         </div>
 
+
+
+
+        
         <div *ngIf="currentModalState == ModalState.Login" class="login-container">
             <div class="header">
                 <h1>{{getTranslation('signIn')}}</h1>
@@ -119,12 +117,6 @@
                     <div *ngIf="formLogin.controls['password'].errors?.['pattern']">
                         {{getTranslation('requiredPasswordLength')}}
                     </div>
-                </div>
-                <div class="input-container" style="display: flex; justify-content: center;">
-                    <ngx-recaptcha2 #captchaElem
-                        [siteKey]="siteKey"
-                        formControlName="recaptcha">
-                    </ngx-recaptcha2>
                 </div>
                 <!-- <button type="button" class="signup-btn demo" (click)="onSignDemo()">{{getTranslation('signInDemo')}}</button> -->
                 <button class="signup-btn" [disabled]="formLogin.pristine || formLogin.invalid">{{getTranslation('signIn')}}</button>
