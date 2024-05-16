@@ -27,12 +27,12 @@ export class AccountExpirationService {
   }
 
   private addActivityListeners(): void {
-    // document.addEventListener('mousemove', () => {
-    //   if (!this.isCountdownShown) {
-    //     this.resetTimer();
-    //   }
-    // });
-    // document.addEventListener('keypress', () => this.resetTimer());
+    document.addEventListener('mousemove', () => {
+      if (!this.isCountdownShown) {
+        this.resetTimer();
+      }
+    });
+    document.addEventListener('keypress', () => this.resetTimer());
   }
 
   public resetTimer(): void {

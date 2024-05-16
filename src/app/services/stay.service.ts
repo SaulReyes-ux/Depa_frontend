@@ -62,7 +62,8 @@ export class StayService {
       place: '',
       label: '',
       hostId: '',
-      isPetAllowed: 'false'
+      isPetAllowed: 'false',
+      name: ''
     }
   }
 
@@ -131,6 +132,7 @@ export class StayService {
     if (filterBy.label) params += `label=${filterBy.label}&`
     if (filterBy.isPetAllowed) params += `isPetAllowed=${filterBy.isPetAllowed}&`
     if (filterBy.place) params += `place=${filterBy.place}`
+    if(filterBy.name) params += `name=${filterBy.name}`
     return params
   }
 

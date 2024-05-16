@@ -30,6 +30,7 @@ export class HeaderFilterComponent implements OnInit, OnDestroy {
   faMagnifyingGlass = faMagnifyingGlass
   modalNav = ''
   searchFilter = ''
+  searchNameFilter = ''
   order !: Order
   subscriptionOrder!: Subscription
   subscriptionStayFilter!: Subscription
@@ -95,6 +96,8 @@ export class HeaderFilterComponent implements OnInit, OnDestroy {
   }
 
   onClickSearch() {
+    this.stayFilter.name = this.searchNameFilter
+    console.log('this.stayFilter:', this.stayFilter)
     this.orderService.setOrder(this.order)
     this.stayService.setFilter(this.stayFilter)
     this.applyFilterToRoute(this.stayFilter)
@@ -157,5 +160,9 @@ export class HeaderFilterComponent implements OnInit, OnDestroy {
 
   getTranslation(key: string): string {
     return this.translationService.getTranslation(key);
+  }
+
+  onSetSearchName(val: string) {
+    this.searchNameFilter = val
   }
 }

@@ -117,7 +117,7 @@ export class StayIndexComponent implements OnInit, OnDestroy {
   }
 
   checkIfClearFilter(stayFilter: StayFilter): boolean {
-    if (stayFilter.place || stayFilter.label || stayFilter.isPetAllowed === 'true') return true
+    if (stayFilter.place || stayFilter.label || stayFilter.isPetAllowed === 'true' || stayFilter.name) return true
     return false
   }
 

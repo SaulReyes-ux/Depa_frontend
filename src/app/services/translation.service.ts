@@ -337,6 +337,14 @@ export class TranslationService {
     filter_alt:{
       en: 'Filter Table',
       es: 'Filtrar Tabla'
+    },
+    searchByName:{
+     en: 'Search by name',
+      es: 'Buscar por nombre'
+    },
+    name_:{
+      en: 'Name',
+      es: 'Nombre'
     }
   };
 
