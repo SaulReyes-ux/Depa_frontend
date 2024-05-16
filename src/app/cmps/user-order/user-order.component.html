@@ -1,3 +1,13 @@
+<style>
+    .texto {
+        position: relative; /* o absolute, fixed */
+        top: -30px; /* ajusta el valor según lo que necesites */
+        left: -140px; /* ajusta el valor según lo que necesites */
+        color: rgb(192, 192, 192);
+    }
+  </style>
+  <div class="texto"><a [routerLink]="['']">Home/</a><a >Orders</a></div>
+
 <section *ngIf="ordersToShow.length" class="user-trips">
     <div class="user-header">
         <h2 typingAnimation *ngIf="!isSearchActive">Hi {{user.fullname}}, you have {{orders.length}} orders</h2>

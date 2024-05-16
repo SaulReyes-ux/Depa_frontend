@@ -6,7 +6,7 @@ import { io } from 'socket.io-client';
 })
 export class SocketService {
   socket: any
-  readonly uri: string = 'https://depa-backend.onrender.com'
+  readonly uri: string = '//localhost:3030'
 
   constructor() {
     this.socket = io(this.uri)

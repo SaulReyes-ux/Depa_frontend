@@ -1,3 +1,13 @@
+<style>
+      .texto {
+          position: relative; /* o absolute, fixed */
+          top: -30px; /* ajusta el valor según lo que necesites */
+          left: -140px; /* ajusta el valor según lo que necesites */
+          color: rgb(192, 192, 192);
+      }
+    </style>
+    <div class="texto"><a [routerLink]="['']">Home/</a><a >Wishlists</a></div>
+
 <section class="user-wishlist">
       <h2>Wishlists</h2>
       <stay-list  *ngIf="stays?.length" [stays]="stays"></stay-list>
