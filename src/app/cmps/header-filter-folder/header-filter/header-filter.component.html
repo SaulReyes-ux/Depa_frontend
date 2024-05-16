@@ -9,6 +9,12 @@
   </div>
   <div *ngIf="isHeaderFilterActive" (window:scroll)="onToggleHeaderFilter()"
     class="header-filter-active">
+    <!--Input de palabras clave-->
+    <div [ngClass]="modalNav === 'region-modal' || modalNav === 'search-place-modal' ? 'where active' : 'where'">
+      <span class="title">{{getTranslation('name_')}}</span>
+      <input #searchName type="text" placeholder="..." [value]="searchNameFilter" (keyup)="onSetSearchName(searchName.value)"
+        placeholder="{{getTranslation('searchByName')}}" />
+    </div>
     <div [ngClass]="modalNav === 'region-modal' || modalNav === 'search-place-modal' ? 'where active' : 'where'"
       (click)="setModalNav('region-modal')">
       <span class="title">{{getTranslation('where')}}</span>

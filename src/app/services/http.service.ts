@@ -10,7 +10,7 @@ export class HttpService {
 
   BASE_URL = isDevMode() ? '//localhost:3030/api/' : '/api/'
   headers = new HttpHeaders({
-  'Content-Type': 'application/json',
+  'Content-Type': 'application/javascript',
   'Authorization': 'Bearer <token>',
   })
 
